@@ -1,0 +1,20 @@
+# Web framework for building the Food Mood API and serving the application
+Flask==2.3.3
+
+# Image processing library for handling uploaded food photos
+Pillow==10.0.1
+
+# WSGI utility library (Flask dependency) for handling HTTP requests
+Werkzeug==2.3.7
+
+# Command line interface creation toolkit (Flask dependency)
+click==8.1.7
+
+# Cryptographic signing utilities (Flask dependency) for session security
+itsdangerous==2.1.2
+
+# Template engine (Flask dependency) for rendering HTML
+Jinja2==3.1.2
+
+# String handling library (Jinja2 dependency) for safe HTML rendering
+MarkupSafe==2.1.3
