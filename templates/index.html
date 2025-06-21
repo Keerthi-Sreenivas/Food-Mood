@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodMood - Food Memory Journal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🍽️ FoodMood</h1>
+            <nav class="nav">
+                <button class="btn btn-primary" onclick="openAddModal()">+ Add Memory</button>
+                <button class="btn btn-secondary" onclick="toggleStats()">📊 Stats</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search spots, locations, or companions..." class="search-input">
+                <div class="mood-filters">
+                    <button class="mood-filter active" data-mood="">All</button>
+                    <button class="mood-filter" data-mood="😊">😊 Happy</button>
+                    <button class="mood-filter" data-mood="🤩">🤩 Excited</button>
+                    <button class="mood-filter" data-mood="😌">😌 Relaxed</button>
+                    <button class="mood-filter" data-mood="🥰">🥰 Nostalgic</button>
+                </div>
+            </div>
+
+            <div id="entriesGrid" class="entries-grid"></div>
+            <div id="statsPanel" class="stats-panel hidden"></div>
+        </div>
+    </main>
+
+    <!-- Add Entry Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Food Memory</h2>
+                <button class="close-btn" onclick="closeAddModal()">&times;</button>
+            </div>
+            <form id="addEntryForm" class="form">
+                <div class="form-group">
+                    <label for="spotName">Spot Name *</label>
+                    <input type="text" id="spotName" name="spot_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="photoUpload">Photo</label>
+                    <div class="photo-upload" id="photoUpload">
+                        <input type="file" id="photoInput" name="photo" accept="image/*" hidden>
+                        <div class="upload-placeholder">
+                            <span>📷 Drag & drop or click to upload</span>
+                        </div>
+                        <div class="photo-preview hidden"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rating">Rating *</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">⭐</span>
+                            <span class="star" data-rating="2">⭐</span>
+                            <span class="star" data-rating="3">⭐</span>
+                            <span class="star" data-rating="4">⭐</span>
+                            <span class="star" data-rating="5">⭐</span>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="mood">Mood *</label>
+                        <div class="mood-selector">
+                            <button type="button" class="mood-btn active" data-mood="😊">😊</button>
+                            <button type="button" class="mood-btn" data-mood="🤩">🤩</button>
+                            <button type="button" class="mood-btn" data-mood="😌">😌</button>
+                            <button type="button" class="mood-btn" data-mood="🥰">🥰</button>
+                        </div>
+                        <input type="hidden" id="mood" name="mood" value="😊">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="cuisineType">Cuisine Type</label>
+                        <input type="text" id="cuisineType" name="cuisine_type">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="companions">Companions</label>
+                    <input type="text" id="companions" name="companions" placeholder="Who did you dine with?">
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="What made this meal special?"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Memory</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
